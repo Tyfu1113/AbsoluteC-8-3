@@ -1,120 +1,25 @@
-#include<iostream>
-#include<cmath>   //for absolute value
-using namespace std;
+int main(){
+    Complex complex1, complex2(2, 3);
+    cout << "Enter an complex:" << endl;
+    cin >> complex1;
+    //show two complex
+    cout << "Complex 1 is " << complex1 << "\t" << "Complex2 is " << complex2 << endl;
+    //testing addition
+    cout << "The addition of two complex is " << complex1+complex2 << endl;
+    //testing substraction
+    cout << "The substraction of two complex is " << complex1-complex2 << endl;
+    //testing multiplication
+    cout << "The multiplication of two complex is " << complex1*complex2 << endl;
+    //testing negative
+    cout << "The negative of complex1 is " << -complex1 << endl;
+    //testing equal
+    if(complex1==complex2){
+        cout << complex1 << " is equals to " << complex2 << endl;
+    }else{
+        cout << complex1 << " is not equals to " << complex2 << endl;
+    }
+    //testing constant 'i'
+    cout << 2*i << endl;
 
-class Complex {
-public:
-	Complex();    //default constructor => 0 + 0*i
-	Complex(double real, double imaginary);   //real + imaginary*i
-	Complex(double realpart);                //realpart + 0*i
-	double getreal() const { return real; }
-	double getimaginary() const { return imaginary; }
-
-	friend const Complex operator +(Complex& c1, Complex& c2);
-	friend const Complex operator -(Complex& c1, Complex& c2);
-	
-	friend bool operator ==(Complex& c1, Complex& c2);
-	friend ostream& operator<<(ostream& ouputStream, const Complex& c);
-	friend istream& operator>>(istream& inputStream, Complex& c);
-private:
-	double real;
-	double imaginary;
-};
-
-int main(void) {
-	const Complex i(0, 1);
-	Complex num1, num2;     //two complex numbers
-	cout << "Enter two complex numbers to operate." << endl;
-	cout << "Enter real part and imaginary with a space: ";
-	cin >> num1;
-	cout << "Enter real part and imaginary with a space: ";
-	cin >> num2;
-
-	cout << endl;
-	Complex sum = num1 + num2;    //sum of two complex numbers
-	cout << "Complex1 + complex2= " << sum << endl;
-
-	Complex diff = num1 - num2;   //difference of two complex numbers
-	cout << "Complex1 - complex2= " << diff << endl;
-
-	/*Complex pro = num1 * num2;    product of two complex numbers
-	cout << "Complex1 * complex2= " << pro << endl;*/
-
-	cout << endl;
-	if (num1 == num2) {
-		cout << "Complex1 is equal to complex2=> " << num1 << endl;
-	}
-	else {
-		cout << "Complex1 is not equal to complex2." << endl;
-		cout << "Complex1=> " << num1 << endl;
-		cout << "Complex2=> " << num2 << endl;
-	}
-
-	system("PAUSE");
-	return 0;
-}
-
-//class Complex
-//default constructor
-Complex::Complex() {
-	real = 0;
-	imaginary = 0;
-}
-
-//constructor of 2 variables
-Complex::Complex(double real, double imaginary) {
-	this->real = real;
-	this->imaginary = imaginary;
-}
-
-//constructor of 1 variables
-Complex::Complex(double realpart) {
-	this->real = realpart;
-	imaginary = 0;
-}
-
-//operator +
-const Complex operator +(Complex& c1, Complex& c2) {
-	int realSum = c1.real + c2.real;
-	int imaginarySum = c1.imaginary + c2.imaginary;
-
-	return Complex(realSum, imaginarySum);
-}
-
-//operator -
-const Complex operator -(Complex& c1, Complex& c2) {
-	int realSub = c1.real - c2.real;
-	int imaginarySub = c1.imaginary - c2.imaginary;
-
-	return Complex(realSub, imaginarySub);
-}
-
-
-//operator ==
-bool operator ==(Complex& c1, Complex& c2) {
-	return ((c1.real == c2.real) && (c1.imaginary == c2.imaginary));
-}
-
-//operator <<
-ostream& operator<<(ostream& ouputStream, const Complex& c) {
-	if (c.imaginary < 0) {
-		ouputStream << c.real << " - " << abs(c.imaginary) << "i";
-	}
-	else {
-		ouputStream << c.real << " + " << c.imaginary << "i";
-	}
-
-	return ouputStream;
-}
-
-//operator >>
-istream& operator>>(istream& inputStream, Complex& c) {
-	double inputReal;
-	double inputImag;
-	inputStream >> inputReal;
-	inputStream >> inputImag;
-
-	c = Complex(inputReal, inputImag);
-
-	return inputStream;
+    return 0;
 }
